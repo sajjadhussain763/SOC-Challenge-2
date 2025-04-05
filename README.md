@@ -85,6 +85,21 @@ Some common **Event IDs** in **Windows Security Logs** that you will encounter i
 4. Take a screenshot of the account lockout event.
 
 
+  
+### Step 4: Check with PowerShell
+# Define the Event Log IDs
+$successfulLoginEventID = 4624
+$failedLoginEventID = 4625
+
+# Get successful logins (Event ID 4624)
+$successfulLogins = Get-WinEvent -FilterHashtable @{LogName='Security'; Id=$successfulLoginEventID} | Select-Object TimeCreated, Message
+
+# Get unsuccessful logins (Event ID 4625)
+$failedLogins = Get-WinEvent -FilterHashtable @{LogName='Security'; Id=$failedLoginEventID} | Select-Object TimeCreated, Message
+
+
+
+
 ## Conclusion:
 - Understanding Windows Security Logs: Windows Security Logs are essential for identifying suspicious behavior such as unauthorized login attempts, privilege escalation, and system configuration changes.
 - SOC Analyst Role: As a SOC Analyst, reviewing and analyzing these logs regularly is critical to detecting and responding to security incidents in real-time.
