@@ -92,10 +92,11 @@ $successfulLoginEventID = 4624
 $failedLoginEventID = 4625
 
 # Get successful logins (Event ID 4624)
-$successfulLogins = Get-WinEvent -FilterHashtable @{LogName='Security'; Id=$successfulLoginEventID} | Select-Object TimeCreated, Message
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} | Select-Object TimeCreated, Message; Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} | Select-Object TimeCreated, Message
 
 # Get unsuccessful logins (Event ID 4625)
-$failedLogins = Get-WinEvent -FilterHashtable @{LogName='Security'; Id=$failedLoginEventID} | Select-Object TimeCreated, Message
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} | Select-Object TimeCreated, Message
+
 
 
 
